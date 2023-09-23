@@ -45,16 +45,32 @@ function App() {
   
   //USER INPUT FOR TEXT BOX
   const[data,setdata] = useState(null)
-
-  const[planetResponse, setResponse] = useState(null)
+  const[planetResponse, setResponse] = useState("Loading...")
+  
+  // add introduction text once DOM loads
+  useEffect(() => {
+    setResponse(getIntro());
+  }, []);
 
   // input is the user's question, pint GPT api and then set the response to the planetResponse
+  function getIntro(){
+    axios.post('http://localhost:8000/getintro/', {
+      planetIndex: 2,
+    })
+    .then((response) => {
+      console.log(response);
+      setResponse(response.data.message);
+    });
+  }
+
   function getData(val)
   {
+    // set response to loading while waiting for response
+    setResponse("Loading...")
     axios.post('http://localhost:8000/gptresponse/', {
       message: val.target.value,
-      planetIndex: 0,
-      educationIndex: 0
+      planetIndex: 2,
+      educationIndex: 3
     })
     .then((response) => {
       console.log(response);

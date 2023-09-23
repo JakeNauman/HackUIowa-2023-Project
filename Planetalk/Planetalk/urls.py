@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name = 'index.html')),
     path('gptresponse/', views.GPTResponse, name='GPTResponse'),
+    path('getintro/', views.getIntro, name='getIntro')
 ]
