@@ -1,2 +1,2 @@
 # Planetalk
-Planet talks :))))
+Planet talks 
