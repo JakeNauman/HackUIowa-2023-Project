@@ -9,8 +9,20 @@ function generateStarBoxShadows() {
 
   const STAR_COUNT = 400;
   let result = '';
+
+  const topBoxHeight = -10; // Adjust the height of the empty box at the top in vh units
+  const intervalWidth = 25; // Adjust the width of the interval without stars in vw units
+  const intervalCenter = 0; // Adjust the center of the interval
+
   for (let i = 0; i < STAR_COUNT; i++) {
-    result += `${randomNumber(-50, 50)}vw ${randomNumber(-50, 50)}vh ${randomNumber(0, 1)}px ${randomNumber(0, 1)}px #fff,`;
+
+    const y = randomNumber(-50, 50); // Stars are generated below the top box
+    let x;
+    do {
+      x = randomNumber(-50, 50);
+    } while (Math.abs(x - intervalCenter) < intervalWidth / 2 && y<-10);
+
+    result += `${x}vw ${y}vh ${randomNumber(0, 1)}px ${randomNumber(0, 1)}px #fff,`;
   }
 
   // Remove the trailing comma from the result string
@@ -32,10 +44,18 @@ function App() {
   
   //USER INPUT FOR TEXT BOX
   const[data,setdata] = useState(null)
+
+  const[planetResponse, setResponse] = useState(null)
+
   function getData(val)
   {
     setdata(val.target.value)
-    console.warn(val.target.value)
+    //console.warn(val.target.value)
+  }
+
+  function getResponse(val)
+  {
+    setResponse(val.target.val)
   }
 
   //INPUT SUBMITS ONLY WITH ENTER KEY
@@ -50,15 +70,17 @@ function App() {
   return (
     //HTML FOR THE TEXTBOX PORTION
     <div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div className="main"></div>
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", minHeight: "100vh" }}>
-      <h1 className="white-text">{data}</h1>
-      <img style = {{width: "300px", height: "300px"}}
+      <h1 className="white-text">{planetResponse}</h1>
+      <img style = {{align: "top", width: "300px", height: "300px"}}
         src={Earthgif} // Use the imported GIF
         alt="Example GIF"
       />
-      <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px" }} rows="3"></textarea>
-    </div>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "absolute" }}>
+        <h1 className="white-text">{data}</h1>
+        <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px" }} rows="3"></textarea>
+      </div>
+      <div className="main">
+      </div>
   </div>
   );
 }
