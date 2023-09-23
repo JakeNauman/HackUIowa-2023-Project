@@ -4,7 +4,7 @@ import openai
 # Varaibles
 isTesting = True # turn off in production
 keyFile = 'key.private'
-introFile = 'planets.intro'
+introFile = 'planets.intros'
 planetOrder = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
 # index each level of education 0-5
 educationLevel = ['elementary student', 'middle school student', 'high school student', 'college student', 'graduate student', 'researcher']
@@ -38,7 +38,7 @@ def createPersona(planetIndex, educationIndex):
   planetName = planetOrder[planetIndex]
   if isTesting:
     print("createPersona for " + planetName)
-  persona = f"In this conversation, you are {planetName}, the {planetIndex+1}th planet from the Sun in our solar system. Your goal is to provide factual information about {planetName}'s astronomical characteristics, history, and any relevant details. Respond to questions as if you are {planetName} itself, using 'I' and 'my' to refer to yourself. Please explain all topics between the education level of a {educationLevel[educationIndex]}. Please do not deviate from this persona."
+  persona = f"In this conversation, you are {planetName}, the {planetIndex+1}th planet from the Sun in our solar system. Your goal is to provide factual information about {planetName}'s astronomical characteristics, history, and any relevant details. Respond to questions as if you are {planetName} itself, using 'I' and 'my' to refer to yourself. Please explain all topics between the education level of a {educationLevel[educationIndex]}. Please be very concise. Please do not deviate from this persona."
   return persona
 
 def getIntro(planetIndex):
@@ -55,7 +55,7 @@ def getIntro(planetIndex):
         return row[1]
   raise "Error: Planet not found."
 
-def GPTReponse(planetIndex, educationIndex):
+def GPTReponse(planetIndex, educationIndex, message):
   if isTesting:
     print("GPTReponse")
 
@@ -65,23 +65,25 @@ def GPTReponse(planetIndex, educationIndex):
     messages=[
         {"role": "system", "content": getPlanetPersona(planetIndex, educationIndex)},
         # {"role": "assistant", "content": f"Please introduce yourself. Then ask the user what they would like to know about {planetOrder[planetIndex]}."},
-        # {"role": "user", "content": "how many moons do you have?"},
+        {"role": "user", "content": message},
     ],
-    max_tokens=100,
-    temperature=1,
+    max_tokens=120,
+    temperature=.8,
     top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0,
+    frequency_penalty=0.8,
+    presence_penalty=0.3,
   )
   reply = response['choices'][0]['message']['content']
   print(f"ChatGPT: {reply}")
 
 def main():
+  print("Welcome to Planet-Talk ChatGPT!")
   if isTesting:
-    print("Welcome to Planet-Talk ChatGPT!")
     print(getPlanetPersona(5, 3))
   print(getIntro(5))
-  # GPTReponse(5, 3)
+  # while (True):
+  #   message = input("User: ")
+  #   GPTReponse(5, 3, message=message)
 
 if __name__ == "__main__":
   main()
