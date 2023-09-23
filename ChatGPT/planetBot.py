@@ -1,8 +1,7 @@
-import os
 import openai
 
 # Varaibles
-isTesting = True # turn off in production
+isTesting = False # turn off in production
 keyFile = 'key.private'
 introFile = 'planets.intros'
 planetOrder = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
@@ -60,21 +59,28 @@ def GPTReponse(planetIndex, educationIndex, message):
     print("GPTReponse")
 
   openai.api_key = getKeys()['OPENAI_API_KEY']
-  response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "system", "content": getPlanetPersona(planetIndex, educationIndex)},
-        # {"role": "assistant", "content": f"Please introduce yourself. Then ask the user what they would like to know about {planetOrder[planetIndex]}."},
-        {"role": "user", "content": message},
-    ],
-    max_tokens=120,
-    temperature=.8,
-    top_p=1,
-    frequency_penalty=0.8,
-    presence_penalty=0.3,
-  )
-  reply = response['choices'][0]['message']['content']
-  print(f"ChatGPT: {reply}")
+  try:
+    response = openai.ChatCompletion.create(
+      model="gpt-3.5-turbo",
+      messages=[
+          {"role": "system", "content": getPlanetPersona(planetIndex, educationIndex)},
+          # {"role": "assistant", "content": f"Please introduce yourself. Then ask the user what they would like to know about {planetOrder[planetIndex]}."},
+          {"role": "user", "content": message},
+      ],
+      max_tokens=120,
+      temperature=.8,
+      top_p=1,
+      frequency_penalty=0.8,
+      presence_penalty=0.3,
+    )
+    reply = response['choices'][0]['message']['content']
+    if isTesting:
+      print(f"ChatGPT: {reply}")
+    return reply
+  except:
+    if isTesting:
+      print("Error: GPTReponse failed.")
+    return "Error: GPTReponse failed."
 
 def main():
   print("Welcome to Planet-Talk ChatGPT!")
