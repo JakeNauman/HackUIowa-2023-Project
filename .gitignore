@@ -136,3 +136,6 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 ChatGPT/key.private
+
+# API Key
+key.private
