@@ -31,6 +31,8 @@ function generateStarBoxShadows() {
 }
 
 function App() {
+  var planetID = 0;
+  var educationLevel = 2;
 
   //SPACE BACKGROUND
   useEffect(() => {
@@ -55,7 +57,7 @@ function App() {
   // input is the user's question, pint GPT api and then set the response to the planetResponse
   function getIntro(){
     axios.post('http://localhost:8000/getintro/', {
-      planetIndex: 2,
+      planetIndex: planetID,
     })
     .then((response) => {
       console.log(response);
@@ -69,8 +71,8 @@ function App() {
     setResponse("Loading...")
     axios.post('http://localhost:8000/gptresponse/', {
       message: val.target.value,
-      planetIndex: 2,
-      educationIndex: 3
+      planetIndex: planetID,
+      educationIndex: educationLevel
     })
     .then((response) => {
       console.log(response);

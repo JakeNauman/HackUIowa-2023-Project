@@ -4,8 +4,8 @@ import openai
 isTesting = False # turn off in production
 keyFile = 'Planetalk_app/ChatGPT/key.private'
 introFile = 'Planetalk_app/ChatGPT/planets.intros'
-# index each 0-8
-planetOrder = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
+# index each 0-9
+planetOrder = ['sun','mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
 # index each level of education 0-5
 educationLevel = ['elementary student', 'middle school student', 'high school student', 'college student', 'graduate student', 'researcher']
 
