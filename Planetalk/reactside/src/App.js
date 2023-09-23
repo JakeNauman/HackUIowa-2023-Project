@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
+import Sungif from './artwork/Sun.gif';
 import Earthgif from './artwork/Earth.gif';
 
 function generateStarBoxShadows() {
@@ -20,7 +21,7 @@ function generateStarBoxShadows() {
     let x;
     do {
       x = randomNumber(-50, 50);
-    } while (Math.abs(x - intervalCenter) < intervalWidth / 2 && y<-10);
+    } while (Math.abs(x - intervalCenter) < intervalWidth / 2 && y<-0);
 
     result += `${x}vw ${y}vh ${randomNumber(0, 1)}px ${randomNumber(0, 1)}px #fff,`;
   }
@@ -45,15 +46,17 @@ function App() {
   //USER INPUT FOR TEXT BOX
   const[data,setdata] = useState(null)
 
+  //PLANET RESPONSE DATA
   const[planetResponse, setResponse] = useState(null)
 
-  function getData(val)
+
+  function getData(val)//Gets data from user input text and sets it
   {
     setdata(val.target.value)
     //console.warn(val.target.value)
   }
 
-  function getResponse(val)
+  function getResponse(val) //Gets the ai response data from django and sets the text on the screen
   {
     setResponse(val.target.val)
   }
@@ -67,20 +70,55 @@ function App() {
     }
   }
 
+  const planetImageRef = useRef(null);
+
+  const handleDropdownChange = (event) => {
+    const selectedOption = event.target.value;
+    // Perform actions based on the selected option
+    switch (selectedOption) {
+      case 'Sun':
+        planetImageRef.current.src = Sungif;
+        break;
+      case 'Earth':
+        planetImageRef.current.src = Earthgif;
+        break;
+      // Add cases for other planets
+      default:
+        planetImageRef.current.src = Sungif;
+        break;
+    }
+  };
+    
   return (
-    //HTML FOR THE TEXTBOX PORTION
+
     <div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+      <label for="planets">Choose a planet:</label>
+        <select id="planets" onChange={handleDropdownChange} name="planets">
+            <option value="Sun">Sun</option>
+            <option value="Mercury">Mercury</option>
+            <option value="Venus">Venus</option>
+            <option value="Earth">Earth</option>
+            <option value="Mars">Jupiter</option>
+            <option value="Saturn">Saturn</option>
+            <option value="Earth">Earth</option>
+            <option value="Uranus">Neptune</option>
+        </select>
+      </div>
       <h1 className="white-text">{planetResponse}</h1>
-      <img style = {{align: "top", width: "300px", height: "300px"}}
-        src={Earthgif} // Use the imported GIF
+
+      <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
+        ref={planetImageRef} // Use the imported GIF
         alt="Example GIF"
       />
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "absolute" }}>
+
+
+      <div /* user textbox at the bottom */ style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "absolute" }}>
         <h1 className="white-text">{data}</h1>
         <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px" }} rows="3"></textarea>
       </div>
-      <div className="main">
-      </div>
+
+      <div className="main"/*stars*/></div>
   </div>
   );
 }
