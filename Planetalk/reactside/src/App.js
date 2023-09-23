@@ -79,11 +79,6 @@ function App() {
     setdata(val.target.value)
   }
 
-  // input AI response, and sets the text on the screen
-  function getResponse(val)
-  {
-    setResponse(val.target.val) // sets the screen text
-  }
 
   //INPUT SUBMITS ONLY WITH ENTER KEY
   function handleKeyDown(event) {
