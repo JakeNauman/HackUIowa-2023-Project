@@ -1,0 +1,12 @@
+venv\Scripts\activate
+
+make two terminals.
+
+in first terminal, cd into /reactside
+>>npm run Build
+have to run this every time you change react code
+
+in second
+>>python.manage.py runserver 
+this is where the website will be run
+
