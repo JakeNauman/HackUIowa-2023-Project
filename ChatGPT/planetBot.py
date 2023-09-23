@@ -4,6 +4,7 @@ import openai
 # Varaibles
 isTesting = True # turn off in production
 keyFile = 'key.private'
+introFile = 'planets.intro'
 planetOrder = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
 # index each level of education 0-5
 educationLevel = ['elementary student', 'middle school student', 'high school student', 'college student', 'graduate student', 'researcher']
@@ -40,6 +41,19 @@ def createPersona(planetIndex, educationIndex):
   persona = f"In this conversation, you are {planetName}, the {planetIndex+1}th planet from the Sun in our solar system. Your goal is to provide factual information about {planetName}'s astronomical characteristics, history, and any relevant details. Respond to questions as if you are {planetName} itself, using 'I' and 'my' to refer to yourself. Please explain all topics between the education level of a {educationLevel[educationIndex]}. Please do not deviate from this persona."
   return persona
 
+def getIntro(planetIndex):
+  # open planets.intro file and read in the intro for the planet
+  if isTesting:
+    print("getIntro: " + str(planetOrder[planetIndex]))
+  
+  # open intro file and get in the intro for the planet
+  with open(introFile, 'r') as f:
+    for row in f:
+      row = row.strip().split(':')
+      # planet found in file, return intro
+      if row[0] == planetOrder[planetIndex]:
+        return row[1]
+  raise "Error: Planet not found."
 
 def GPTReponse(planetIndex, educationIndex):
   if isTesting:
@@ -66,7 +80,8 @@ def main():
   if isTesting:
     print("Welcome to Planet-Talk ChatGPT!")
     print(getPlanetPersona(5, 3))
-  GPTReponse(5, 3)
+  print(getIntro(5))
+  # GPTReponse(5, 3)
 
 if __name__ == "__main__":
   main()
