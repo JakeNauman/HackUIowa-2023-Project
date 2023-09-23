@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Planetalk import views
+from Planetalk_app import views
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name = 'index.html')),
+    path('gptresponse/', views.GPTResponse, name='GPTResponse'),
+    path('getintro/', views.getIntro, name='getIntro')
 ]

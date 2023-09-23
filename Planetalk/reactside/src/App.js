@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import Sungif from './artwork/Sun.gif';
 import Earthgif from './artwork/Earth.gif';
+import axios from 'axios';
 
 function generateStarBoxShadows() {
   function randomNumber(min, max) {
@@ -31,6 +32,8 @@ function generateStarBoxShadows() {
 }
 
 function App() {
+  var planetID = 0;
+  var educationLevel = 2;
 
   //SPACE BACKGROUND
   useEffect(() => {
@@ -45,21 +48,42 @@ function App() {
   
   //USER INPUT FOR TEXT BOX
   const[data,setdata] = useState(null)
+  const[planetResponse, setResponse] = useState("Loading...")
+  
+  // add introduction text once DOM loads
+  useEffect(() => {
+    setResponse(getIntro());
+  }, []);
 
-  //PLANET RESPONSE DATA
-  const[planetResponse, setResponse] = useState(null)
 
+
+  // input is the user's question, pint GPT api and then set the response to the planetResponse
+  function getIntro(){
+    axios.post('http://localhost:8000/getintro/', {
+      planetIndex: planetID,
+    })
+    .then((response) => {
+      console.log(response);
+      setResponse(response.data.message);
+    });
+  }
 
   function getData(val)//Gets data from user input text and sets it
   {
+    // set response to loading while waiting for response
+    setResponse("Loading...")
+    axios.post('http://localhost:8000/gptresponse/', {
+      message: val.target.value,
+      planetIndex: planetID,
+      educationIndex: educationLevel
+    })
+    .then((response) => {
+      console.log(response);
+      setResponse(response.data.message)
+    });
     setdata(val.target.value)
-    //console.warn(val.target.value)
   }
 
-  function getResponse(val) //Gets the ai response data from django and sets the text on the screen
-  {
-    setResponse(val.target.val)
-  }
 
   //INPUT SUBMITS ONLY WITH ENTER KEY
   function handleKeyDown(event) {

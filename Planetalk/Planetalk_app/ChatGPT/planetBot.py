@@ -2,9 +2,10 @@ import openai
 
 # Varaibles
 isTesting = False # turn off in production
-keyFile = 'key.private'
-introFile = 'planets.intros'
-planetOrder = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
+keyFile = 'Planetalk_app/ChatGPT/key.private'
+introFile = 'Planetalk_app/ChatGPT/planets.intros'
+# index each 0-9
+planetOrder = ['sun','mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
 # index each level of education 0-5
 educationLevel = ['elementary student', 'middle school student', 'high school student', 'college student', 'graduate student', 'researcher']
 
@@ -40,7 +41,7 @@ def createPersona(planetIndex, educationIndex):
   persona = f"In this conversation, you are {planetName}, the {planetIndex+1}th planet from the Sun in our solar system. Your goal is to provide factual information about {planetName}'s astronomical characteristics, history, and any relevant details. Respond to questions as if you are {planetName} itself, using 'I' and 'my' to refer to yourself. Please explain all topics between the education level of a {educationLevel[educationIndex]}. Please be very concise. Please do not deviate from this persona."
   return persona
 
-def getIntro(planetIndex):
+def getPlanetIntro(planetIndex):
   # open planets.intro file and read in the intro for the planet
   if isTesting:
     print("getIntro: " + str(planetOrder[planetIndex]))
@@ -86,7 +87,7 @@ def main():
   print("Welcome to Planet-Talk ChatGPT!")
   if isTesting:
     print(getPlanetPersona(5, 3))
-  print(getIntro(5))
+  print(getPlanetIntro(5))
   # while (True):
   #   message = input("User: ")
   #   GPTReponse(5, 3, message=message)
