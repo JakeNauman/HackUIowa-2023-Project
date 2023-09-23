@@ -53,7 +53,7 @@ function App() {
       <div className="main"></div>
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", minHeight: "100vh" }}>
       <h1 className="white-text">{data}</h1>
-      <img style = {{width: "300px", height: "300px"}}
+      <img style = {{transform: scale(3)}}
         src={Earthgif} // Use the imported GIF
         alt="Example GIF"
       />
