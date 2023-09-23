@@ -13,12 +13,12 @@ def home(request):
 
 @api_view(['POST'])
 def GPTResponse(request):
-    question = request.data['question']
-    planet = request.data['planetIndex']
-    education = request.data['educationIndex']
+    question = request.data['message']
+    # planet = request.data['planetIndex']
+    # education = request.data['educationIndex']
     # call chat bot from ChatGPT folder
-    response = "This is a response from the chatbot"
-    return Response({'response': response})
+    response = "This is a response from the chatbot, you entered " + question + "."
+    return Response({'message': response})
 
 # class GPTResponseView(APIView):
 #     def get(self, request):

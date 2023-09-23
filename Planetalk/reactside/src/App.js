@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import Earthgif from './artwork/Earth.gif';
+import axios from 'axios';
 
 function generateStarBoxShadows() {
   function randomNumber(min, max) {
@@ -47,15 +48,25 @@ function App() {
 
   const[planetResponse, setResponse] = useState(null)
 
+  // input is the user's question, pint GPT api and then set the response to the planetResponse
   function getData(val)
   {
+    axios.post('http://localhost:8000/gptresponse/', {
+      message: val.target.value,
+      planetIndex: 0,
+      educationIndex: 0
+    })
+    .then((response) => {
+      console.log(response);
+      setResponse(response.data.message)
+    });
     setdata(val.target.value)
-    //console.warn(val.target.value)
   }
 
+  // input AI response, and sets the text on the screen
   function getResponse(val)
   {
-    setResponse(val.target.val)
+    setResponse(val.target.val) // sets the screen text
   }
 
   //INPUT SUBMITS ONLY WITH ENTER KEY
