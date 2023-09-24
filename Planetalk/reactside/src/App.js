@@ -31,9 +31,10 @@ function generateStarBoxShadows() {
   return result.substring(0, result.length - 1);
 }
 
+var planetID = 0;
+var educationLevel = 2;
+var isTalking = false;
 function App() {
-  var planetID = 0;
-  var educationLevel = 2;
 
   //SPACE BACKGROUND
   useEffect(() => {
@@ -145,7 +146,7 @@ function App() {
             <option value="Uranus">Neptune</option>
         </select>
       </div>
-      <h1 className="white-text">{planetResponse}</h1>
+      <h1 style={{textAlignVertical: "center",textAlign: "center",}} className="white-text">{planetResponse}</h1>
 
       <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
         ref={planetImageRef} // Use the imported GIF
