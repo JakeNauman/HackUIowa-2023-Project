@@ -189,26 +189,29 @@ function App() {
   return (
 
     <div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div style={{ position: "absolute", top: "10px", right: "10px" }}>
-      <label for="planets">Choose a planet:</label>
-        <select id="planets" onChange={handleDropdownChange} name="planets">
-            <option value="Sun">Sun</option>
-            <option value="Mercury">Mercury</option>
-            <option value="Venus">Venus</option>
-            <option value="Earth">Earth</option>
-            <option value="Mars">Jupiter</option>
-            <option value="Saturn">Saturn</option>
-            <option value="Uranus">Uranus</option>
-            <option value="Neptune">Neptune</option>
-        </select>
+      <div className="topnav">
+        <h1 className='title'>PlaneTalk</h1>
+        <div className='menu'>
+        <label for="planets">Choose a planet: </label>
+          <select id="planets" onChange={handleDropdownChange} name="planets">
+              <option value="Sun">Sun</option>
+              <option value="Mercury">Mercury</option>
+              <option value="Venus">Venus</option>
+              <option value="Earth">Earth</option>
+              <option value="Mars">Jupiter</option>
+              <option value="Saturn">Saturn</option>
+              <option value="Earth">Earth</option>
+              <option value="Uranus">Neptune</option>
+          </select>
+          </div>
       </div>
-      <h1 style={{textAlignVertical: "center",textAlign: "center",}} className="white-text">{planetResponse}</h1>
 
       <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
         ref={planetImageRef} // Use the imported GIF
         alt="Example GIF"
       />
 
+      <h1 className="responsebox">{planetResponse}</h1>
 
       <div /* user textbox at the bottom */ style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "absolute" }}>
         <h1 className="white-text">{data}</h1>

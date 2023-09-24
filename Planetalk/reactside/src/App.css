@@ -1,5 +1,7 @@
 body{
   background-color: #000;
+  font-family: "Pixeloid";
+  font-weight: normal;
 }
 
 .main {
@@ -25,12 +27,53 @@ animation: zoom 16s alternate infinite;
 .inputbox{
     width: 200px; /* Adjust the width as needed */
     height: 40px; /* Adjust the height as needed */
-    border: 3px solid #fff; /* Strong white border */
+    /* border: 3px solid #fff; Strong white border */
     background-color: rgba(255, 255, 255, 0.25); /* Half transparent white background */
-    border-radius: 20px; /* Rounded corners */
+    border-radius: 20px;
     padding: 10px;
     font-size: 16px;
     outline: none; /* Remove the default focus outline */
+}
+
+.responsebox {
+  width: 600px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  padding: 10px;
+  outline: none; /* Remove the default focus outline */
+  color: white;
+  text-align: center;
+  vertical-align: auto;
+  font-family: "Pixeloid";
+  font-weight: normal;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #2a2731;
+  color: white;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  vertical-align: auto;
+  align-items: center;
+  display: flex;
+}
+
+.menu {
+  /* display: flex;
+  justify-content: center; /* To align to the right */
+  /* align-items: center; To vertically center */
+  margin-left: auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: "Pixeloid";
+  font-weight: bold;
+  text-shadow: 0px 6px 0px #6600ff;
+  text-align: center;
+  padding-right: 20px;
 }
 
 @keyframes zoom {
