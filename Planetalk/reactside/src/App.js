@@ -33,7 +33,7 @@ function generateStarBoxShadows() {
 
 var planetID = 0;
 var educationLevel = 2;
-
+var isTalking = false;
 function App() {
 
   //SPACE BACKGROUND
@@ -50,13 +50,28 @@ function App() {
   //USER INPUT FOR TEXT BOX
   const[data,setdata] = useState(null)
   const[planetResponse, setResponse] = useState("Loading...")
+  const [completedText, setCompletedText] = useState(false);
   
   // add introduction text once DOM loads
   useEffect(() => {
     setResponse(getIntro());
   }, []);
 
-
+  function AnimateText(reply) {
+    console.log(reply);
+    setCompletedText(false);
+    let i = 0;
+    const stringResponse = reply;
+    const interval = setInterval(() => {
+      setResponse(stringResponse.substring(0, i));
+      i++;
+      if (i > stringResponse.length) {
+        clearInterval(interval);
+        setCompletedText(true);
+      }
+    }, 50);
+    return () => clearInterval(interval);
+  }
 
   // input is the user's question, pint GPT api and then set the response to the planetResponse
   function getIntro(){
@@ -65,9 +80,10 @@ function App() {
     })
     .then((response) => {
       console.log(response);
-      setResponse(response.data.message);
+      AnimateText(response.data.message);
     });
   }
+
 
   function getData(val)//Gets data from user input text and sets it
   {
@@ -80,11 +96,11 @@ function App() {
     })
     .then((response) => {
       console.log(response);
-      setResponse(response.data.message)
+      // setResponse(response.data.message);
+      AnimateText(response.data.message);
     });
     setdata(val.target.value)
   }
-
 
   //INPUT SUBMITS ONLY WITH ENTER KEY
   function handleKeyDown(event) {
@@ -132,7 +148,7 @@ function App() {
             <option value="Uranus">Neptune</option>
         </select>
       </div>
-      <h1 className="white-text">{planetResponse}</h1>
+      <h1 style={{textAlignVertical: "center",textAlign: "center",}} className="white-text">{planetResponse}</h1>
 
       <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
         ref={planetImageRef} // Use the imported GIF
