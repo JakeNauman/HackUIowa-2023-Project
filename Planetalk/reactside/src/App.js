@@ -131,7 +131,14 @@ function App() {
     }
   }
 
-  const planetImageRef = useRef(null);
+  const planetImageRef = useRef(null); //initialize planet ref
+  //set initial to the sun
+  useEffect(() => {
+    // Use planetImageRef.current to set the src property
+    if (planetImageRef.current) {
+      planetImageRef.current.src = Sungif;
+    }
+  }, []); // Empty dependency array means this runs once on mount
 
   const handleDropdownChange = (event) => {
     const selectedOption = event.target.value;
