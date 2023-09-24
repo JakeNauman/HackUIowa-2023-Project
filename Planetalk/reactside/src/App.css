@@ -37,7 +37,7 @@ animation: zoom 16s alternate infinite;
 
 .responsebox {
   width: 600px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
+  height: auto; /* Adjust the height as needed */
   padding: 10px;
   outline: none; /* Remove the default focus outline */
   color: white;
@@ -45,6 +45,7 @@ animation: zoom 16s alternate infinite;
   vertical-align: auto;
   font-family: "Pixeloid";
   font-weight: normal;
+  font-size: 1.5rem;
 }
 
 .topnav {

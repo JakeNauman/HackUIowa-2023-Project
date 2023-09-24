@@ -70,7 +70,8 @@ function App() {
   //USER INPUT FOR TEXT BOX
   const[data,setdata] = useState(null)
   const[planetResponse, setResponse] = useState("Loading...")
-  const [completedText, setCompletedText] = useState(false);
+  const[completedText, setCompletedText] = useState(false);
+  const[intervalId, setIntervalId] = useState(null);
   
   // add introduction text once DOM loads
   useEffect(() => {
@@ -79,18 +80,23 @@ function App() {
 
   function AnimateText(reply) {
     console.log(reply);
+    // Clear the previous interval if it exists
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+
     setCompletedText(false);
     let i = 0;
     const stringResponse = reply;
-    const interval = setInterval(() => {
+    const newIntervalId = setInterval(() => {
       setResponse(stringResponse.substring(0, i));
       i++;
       if (i > stringResponse.length) {
-        clearInterval(interval);
+        clearInterval(newIntervalId); // Clear the interval when the animation is complete
         setCompletedText(true);
       }
     }, 50);
-    return () => clearInterval(interval);
+    setIntervalId(newIntervalId); // Store the new interval ID
   }
 
   // input is the user's question, pint GPT api and then set the response to the planetResponse
@@ -154,36 +160,38 @@ function App() {
         break;
       case 'Venus':
         planetImageRef.current.src = Venusgif;
-        planetID = 3;
+        planetID = 2;
         break;
       case 'Earth':
         planetImageRef.current.src = Earthgif;
-        planetID = 4;
+        planetID = 3;
         break;
       case 'Mars':
         planetImageRef.current.src = Marsgif;
-        planetID = 5;
+        planetID = 4;
         break;
       case 'Jupiter':
         planetImageRef.current.src = Jupitergif;
-        planetID = 6;
+        planetID = 5;
         break;
       case 'Saturn':
         planetImageRef.current.src = Saturngif;
-        planetID = 7;
+        planetID = 6;
         break;
       case 'Uranus':
         planetImageRef.current.src = Uranusgif;
-        planetID = 8;
+        planetID = 7;
         break;
       case 'Neptune':
         planetImageRef.current.src = Neptunegif;
-        planetID = 9;
+        planetID = 8;
         break;
-      default:
-        planetImageRef.current.src = Sungif;
-        break;
-    }
+        default:
+          planetImageRef.current.src = Sungif;
+          break;
+      }
+      clearInterval(intervalId);
+      setResponse(getIntro());
   };
     
   return (
@@ -198,10 +206,11 @@ function App() {
               <option value="Mercury">Mercury</option>
               <option value="Venus">Venus</option>
               <option value="Earth">Earth</option>
-              <option value="Mars">Jupiter</option>
+              <option value="Mars">Mars</option>
+              <option value="Jupiter">Jupiter</option>
               <option value="Saturn">Saturn</option>
-              <option value="Earth">Earth</option>
-              <option value="Uranus">Neptune</option>
+              <option value="Uranus">Uranus</option>
+              <option value="Neptune">Neptune</option>
           </select>
           </div>
       </div>
@@ -211,7 +220,7 @@ function App() {
         alt="Example GIF"
       />
 
-      <h1 className="responsebox">{planetResponse}</h1>
+      <div className="responsebox">{planetResponse}</div>
 
       <div /* user textbox at the bottom */ style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "absolute" }}>
         <h1 className="white-text">{data}</h1>
