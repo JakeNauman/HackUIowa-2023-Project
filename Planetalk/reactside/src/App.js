@@ -79,12 +79,11 @@ function App() {
   const[planetResponse, setResponse] = useState("Loading...")
   const[completedText, setCompletedText] = useState(false);
   const[intervalId, setIntervalId] = useState(null);
-  const[currentIndex, setCurrentIndex] = useState(0);
   
   // add introduction text once DOM loads
-  useEffect(() => {
-    setResponse(getIntro());
-  }, []);
+  // useEffect(() => {
+  //   setResponse(getIntro());
+  // }, []);
 
   function changeAnimation(talking){
     if(talking===true){
@@ -123,7 +122,7 @@ function App() {
       }
     } 
     if(talking===false){
-      console.log("not talking");
+      // console.log("not talking");
       switch (planetID) {
         case 0:
           SunImageRef = Sunpng;
@@ -235,7 +234,7 @@ function App() {
     // const selectedOption = index;
     planetID = index;
     clearInterval(intervalId);
-    setResponse(getIntro());
+    getIntro();
   };
 
   return (
@@ -255,7 +254,6 @@ function App() {
             showStatus={false}
             showArrows={true}
             onChange={(newIndex) => {
-              setCurrentIndex(newIndex);
               update(newIndex);
             }}
           >
