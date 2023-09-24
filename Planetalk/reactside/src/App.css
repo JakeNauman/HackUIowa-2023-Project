@@ -25,21 +25,25 @@ animation: zoom 16s alternate infinite;
 }
 
 .inputbox{
-    width: 200px; /* Adjust the width as needed */
-    height: 40px; /* Adjust the height as needed */
-    /* border: 3px solid #fff; Strong white border */
-    background-color: rgba(255, 255, 255, 0.25); /* Half transparent white background */
-    border-radius: 20px;
-    padding: 10px;
-    font-size: 16px;
-    outline: none; /* Remove the default focus outline */
+  width: 400px; /* Adjust the width as needed */
+  height: auto; /* Adjust the height as needed */
+  background-color: rgba(255, 255, 255, 0.25); /* Half transparent white background */
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 16px;
+  outline: none; /* Remove the default focus outline */
+  margin: 0 auto; /* Center the box horizontally */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically within the box */
+  text-align: center; /* Center the text horizontally within the box */
+  padding-top: 60px;
 }
 
 .responsebox {
-  width: 600px; /* Adjust the width as needed */
-  height: auto; /* Adjust the height as needed */
+  width: 600px;
+  height: auto; 
   padding: 10px;
-  outline: none; /* Remove the default focus outline */
+  outline: none; 
   color: white;
   text-align: center;
   vertical-align: auto;
