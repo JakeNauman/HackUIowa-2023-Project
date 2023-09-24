@@ -36,7 +36,7 @@ animation: zoom 16s alternate infinite;
 }
 
 .responsebox {
-  width: 600px; /* Adjust the width as needed */
+  width: 75%; /* Adjust the width as needed */
   height: auto; /* Adjust the height as needed */
   padding: 10px;
   outline: none; /* Remove the default focus outline */
@@ -46,6 +46,7 @@ animation: zoom 16s alternate infinite;
   font-family: "Pixeloid";
   font-weight: normal;
   font-size: 1.5rem;
+  overflow-y: auto;
 }
 
 .topnav {

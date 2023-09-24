@@ -163,7 +163,7 @@ function App() {
       setResponse(stringResponse.substring(0, i));
       i++;
       if (i > stringResponse.length) {
-        clearInterval(interval);
+        clearInterval(intervalId);
         changeAnimation(false);
         setCompletedText(true);
       }
@@ -186,6 +186,7 @@ function App() {
   function getData(val)//Gets data from user input text and sets it
   {
     // set response to loading while waiting for response
+    clearInterval(intervalId);
     setResponse("Loading...")
     axios.post('http://localhost:8000/gptresponse/', {
       message: val.target.value,
@@ -292,9 +293,8 @@ function App() {
         alt="Example GIF"
       />
 
-      <div className="responsebox">{planetResponse}</div>
-
-      <div /* user textbox at the bottom */ style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "absolute" }}>
+      <div /* all text */ style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "relative" }}>
+        <div className="responsebox">{planetResponse}</div>
         <h1 className="white-text">{data}</h1>
         <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px" }} rows="3"></textarea>
       </div>
