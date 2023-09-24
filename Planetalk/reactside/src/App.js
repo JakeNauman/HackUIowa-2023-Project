@@ -34,6 +34,7 @@ var SaturnImageRef = Saturnpng;
 var UranusImageRef = Uranuspng;
 var NeptuneImageRef = Neptunepng;
 var planetNames = ["Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+var planetColors = ["#ffcc00", "#828d94", "#ff6600", "#6abe30", "#e35100", "#986d43", "#d7a257", "#b4e4e4", "#1c8cf4"]
 
 function generateStarBoxShadows() {
   function randomNumber(min, max) {
@@ -175,7 +176,7 @@ function App() {
         clearInterval(intervalId);
         changeAnimation(false);
       }
-    }, 50);
+    }, 30);
     setIntervalId(newIntervalId); // Store the new interval ID
   }
 
@@ -233,6 +234,7 @@ function App() {
     planetID = index;
     clearInterval(intervalId);
     getIntro();
+    setdata(null);
   };
 
   const handleOptionClick = (option) => {
@@ -240,6 +242,10 @@ function App() {
     document.getElementById("overlay").style.display = "none";
     console.log(educationLevel)
     update(planetID);
+  };
+
+  const textStyle = {
+    color: planetColors[planetID],
   };
 
   return (
@@ -308,9 +314,9 @@ function App() {
         </div>
       </div>
 
-      <div /* all text */ style={{ height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "relative" }}>
-        <div className="responsebox">{planetResponse}</div>
-        <h1 className="white-text">{data}</h1>
+      <div className='responseContainer'>
+        <div className="responsebox" style={textStyle}>{planetResponse}</div>
+        <h1 className="white-text" style={{ fontWeight: "normal"}}>{data}</h1>
         <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px" }} rows="3"></textarea>
       </div>
 
