@@ -13,7 +13,6 @@ import Marsgif from './artwork/Mars.gif';
 import Uranusgif from './artwork/Uranus.gif';
 import Jupitergif from './artwork/Jupiter.gif';
 
-
 import Sunpng from './artwork/Sun.png';
 import Earthpng from './artwork/Earth.png';
 import Mercurypng from './artwork/Mercury.png';
@@ -23,9 +22,17 @@ import Venuspng from './artwork/Venus.png';
 import Marspng from './artwork/Mars.png';
 import Uranuspng from './artwork/Uranus.png';
 import Jupiterpng from './artwork/Jupiter.png';
-
-
 import axios from 'axios';
+
+var SunImageRef = Sunpng;
+var MercuryImageRef = Mercurypng;
+var VenusImageRef = Venuspng;
+var EarthImageRef = Earthpng;
+var MarsImageRef = Marspng;
+var JupiterImageRef = Jupiterpng;
+var SaturnImageRef = Saturnpng;
+var UranusImageRef = Uranuspng;
+var NeptuneImageRef = Neptunepng;
 
 function generateStarBoxShadows() {
   function randomNumber(min, max) {
@@ -84,34 +91,34 @@ function App() {
       console.log("talking");
       switch (planetID) {
         case 0:
-          planetImageRef.current.src = Sungif;
+          SunImageRef = Sungif;
           break;
         case 1:
-          planetImageRef.current.src = Mercurygif;
+          MercuryImageRef = Mercurygif;
           break;
         case 2:
-          planetImageRef.current.src = Venusgif;
+          VenusImageRef = Venusgif;
           break;
         case 3:
-          planetImageRef.current.src = Earthgif;
+          EarthImageRef = Earthgif;
           break;
         case 4:
-          planetImageRef.current.src = Marsgif;
+          MarsImageRef= Marsgif;
           break;
         case 5:
-          planetImageRef.current.src = Jupitergif;
+          JupiterImageRef= Jupitergif;
           break;
         case 6:
-          planetImageRef.current.src = Saturngif;
+          SaturnImageRef = Saturngif;
           break;
         case 7:
-          planetImageRef.current.src = Uranusgif;
+          UranusImageRef = Uranusgif;
           break;
         case 8:
-          planetImageRef.current.src = Neptunegif;
+          NeptuneImageRef = Neptunegif;
           break;
         default:
-          planetImageRef.current.src = Sungif;
+          SunImageRef = Sungif;
           break;
       }
     } 
@@ -119,34 +126,34 @@ function App() {
       console.log("not talking");
       switch (planetID) {
         case 0:
-          planetImageRef.current.src = Sunpng;
+          SunImageRef = Sunpng;
           break;
         case 1:
-          planetImageRef.current.src = Mercurypng;
+          MercuryImageRef = Mercurypng;
           break;
         case 2:
-          planetImageRef.current.src = Venuspng;
+          VenusImageRef = Venuspng;
           break;
         case 3:
-          planetImageRef.current.src = Earthpng;
+          EarthImageRef = Earthpng;
           break;
         case 4:
-          planetImageRef.current.src = Marspng;
+          MarsImageRef = Marspng;
           break;
         case 5:
-          planetImageRef.current.src = Jupiterpng;
+          JupiterImageRef = Jupiterpng;
           break;
         case 6:
-          planetImageRef.current.src = Saturnpng;
+          SaturnImageRef = Saturnpng;
           break;
         case 7:
-          planetImageRef.current.src = Uranuspng;
+          UranusImageRef = Uranuspng;
           break;
         case 8:
-          planetImageRef.current.src = Neptunepng;
+          NeptuneImageRef = Neptunepng;
           break;
         default:
-          planetImageRef.current.src = Sunpng;
+          SunImageRef = Sunpng;
           break;
       }
     } 
@@ -227,50 +234,8 @@ function App() {
     console.log(index);
     // const selectedOption = index;
     planetID = index;
-    // Perform actions based on the selected option
-    // switch (selectedOption) {
-    //   case 0:
-    //     planetImageRef.current.src = Sungif;
-    //     planetID = 0;
-    //     break;
-    //   case 1:
-    //     planetImageRef.current.src = Mercurygif;
-    //     planetID = 1;
-    //     break;
-    //   case 2:
-    //     planetImageRef.current.src = Venusgif;
-    //     planetID = 2;
-    //     break;
-    //   case 3:
-    //     planetImageRef.current.src = Earthgif;
-    //     planetID = 3;
-    //     break;
-    //   case 4:
-    //     planetImageRef.current.src = Marsgif;
-    //     planetID = 4;
-    //     break;
-    //   case 5:
-    //     planetImageRef.current.src = Jupitergif;
-    //     planetID = 5;
-    //     break;
-    //   case 6:
-    //     planetImageRef.current.src = Saturngif;
-    //     planetID = 6;
-    //     break;
-    //   case 7:
-    //     planetImageRef.current.src = Uranusgif;
-    //     planetID = 7;
-    //     break;
-    //   case 8:
-    //     planetImageRef.current.src = Neptunegif;
-    //     planetID = 8;
-    //     break;
-    //   default:
-    //     planetImageRef.current.src = Sungif;
-    //     break;
-    //   }
-      clearInterval(intervalId);
-      setResponse(getIntro());
+    clearInterval(intervalId);
+    setResponse(getIntro());
   };
 
   return (
@@ -295,31 +260,31 @@ function App() {
             }}
           >
             <div className="planet-item">
-              <img src={Sungif} alt="Sun"/>
+              <img src={SunImageRef} alt="Sun"/>
             </div>
             <div className="planet-item">
-              <img src={Mercurygif} alt="Mercury" />
+              <img src={MercuryImageRef} alt="Mercury" />
             </div>
             <div className="planet-item">
-              <img src={Venusgif} alt="Venus" />
+              <img src={VenusImageRef} alt="Venus" />
             </div>
             <div className="planet-item">
-              <img src={Earthgif} alt="Earth" />
+              <img src={EarthImageRef} alt="Earth" />
             </div>
             <div className="planet-item">
-              <img src={Marsgif} alt="Mars" />
+              <img src={MarsImageRef} alt="Mars" />
             </div>
             <div className="planet-item">
-              <img src={Jupitergif} alt="Jupiter" />
+              <img src={JupiterImageRef} alt="Jupiter" />
             </div>
             <div className="planet-item">
-              <img src={Saturngif} alt="Saturn" />
+              <img src={SaturnImageRef} alt="Saturn" />
             </div>
             <div className="planet-item">
-              <img src={Uranusgif} alt="Uranus" />
+              <img src={UranusImageRef} alt="Uranus" />
             </div>
             <div className="planet-item">
-              <img src={Neptunegif} alt="Neptune" />
+              <img src={NeptuneImageRef} alt="Neptune" />
             </div>
           </Carousel>
         </div>
