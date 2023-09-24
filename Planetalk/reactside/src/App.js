@@ -343,7 +343,7 @@ function App() {
       <div className='responseContainer'>
         <div className="responsebox" style={textStyle}>{planetResponse}</div>
         <h1 className="white-text" style={{ fontWeight: "normal"}}>{data}</h1>
-        <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px" }} rows="3"></textarea>
+        <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px", marginBottom: "50px"}} rows="3"></textarea>
       </div>
 
       <div className="main"/*stars*/></div>

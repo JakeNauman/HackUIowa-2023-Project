@@ -80,7 +80,7 @@ def GPTReponse(planetIndex, educationIndex, message):
           # {"role": "assistant", "content": f"Please introduce yourself. Then ask the user what they would like to know about {planetOrder[planetIndex]}."},
           {"role": "user", "content": message},
       ],
-      max_tokens=120,
+      max_tokens=256,
       temperature=.8,
       top_p=1,
       frequency_penalty=0.8,
