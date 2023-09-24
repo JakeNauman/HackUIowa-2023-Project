@@ -260,12 +260,12 @@ function App() {
         <div class="popup">
         <h2>Education Level</h2>
           <ul className="menu-list">
-            <li><button className='menuButton' id="option1" onClick={() => handleOptionClick(1)}>Elementary</button></li>
-            <li><button className='menuButton' id="option2" onClick={() => handleOptionClick(2)}>Middle School</button></li>
-            <li><button className='menuButton' id="option3" onClick={() => handleOptionClick(3)}>High School</button></li>
-            <li><button className='menuButton' id="option4" onClick={() => handleOptionClick(4)}>College</button></li>
-            <li><button className='menuButton' id="option5" onClick={() => handleOptionClick(5)}>Gradute</button></li>
-            <li><button className='menuButton' id="option6" onClick={() => handleOptionClick(6)}>Researcher</button></li>
+            <li><button className='menuButton' id="option1" onClick={() => handleOptionClick(0)}>Elementary</button></li>
+            <li><button className='menuButton' id="option2" onClick={() => handleOptionClick(1)}>Middle School</button></li>
+            <li><button className='menuButton' id="option3" onClick={() => handleOptionClick(2)}>High School</button></li>
+            <li><button className='menuButton' id="option4" onClick={() => handleOptionClick(3)}>College</button></li>
+            <li><button className='menuButton' id="option5" onClick={() => handleOptionClick(4)}>Gradute</button></li>
+            <li><button className='menuButton' id="option6" onClick={() => handleOptionClick(5)}>Researcher</button></li>
           </ul>
         </div>
       </div>
