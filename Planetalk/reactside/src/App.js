@@ -43,7 +43,7 @@ function generateStarBoxShadows() {
 
   const STAR_COUNT = 400;
   let result = '';
-  const intervalWidth = 25; // Adjust the width of the interval without stars in vw units
+  const intervalWidth = 20; // Adjust the width of the interval without stars in vw units
   const intervalCenter = 0; // Adjust the center of the interval
 
   for (let i = 0; i < STAR_COUNT; i++) {
