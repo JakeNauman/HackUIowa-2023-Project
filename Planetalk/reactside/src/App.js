@@ -31,9 +31,10 @@ function generateStarBoxShadows() {
   return result.substring(0, result.length - 1);
 }
 
+var planetID = 0;
+var educationLevel = 2;
+
 function App() {
-  var planetID = 0;
-  var educationLevel = 2;
 
   //SPACE BACKGROUND
   useEffect(() => {
@@ -102,9 +103,11 @@ function App() {
     switch (selectedOption) {
       case 'Sun':
         planetImageRef.current.src = Sungif;
+        planetID = 0;
         break;
       case 'Earth':
         planetImageRef.current.src = Earthgif;
+        planetID = 1;
         break;
       // Add cases for other planets
       default:
