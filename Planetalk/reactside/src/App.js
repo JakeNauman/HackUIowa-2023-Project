@@ -1,5 +1,8 @@
 import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import the carousel styles
+
 import Sungif from './artwork/Sun.gif';
 import Earthgif from './artwork/Earth.gif';
 import Mercurygif from './artwork/Mercury.gif';
@@ -9,7 +12,6 @@ import Venusgif from './artwork/Venus.gif';
 import Marsgif from './artwork/Mars.gif';
 import Uranusgif from './artwork/Uranus.gif';
 import Jupitergif from './artwork/Jupiter.gif';
-
 
 import Sunpng from './artwork/Sun1.png';
 import Earthpng from './artwork/Earth2.png';
@@ -193,13 +195,13 @@ function App() {
       clearInterval(intervalId);
       setResponse(getIntro());
   };
-    
+
   return (
 
     <div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="topnav">
         <h1 className='title'>PlaneTalk</h1>
-        <div className='menu'>
+        {/* <div className='menu'>
         <label for="planets">Choose a planet: </label>
           <select id="planets" onChange={handleDropdownChange} name="planets">
               <option value="Sun">Sun</option>
@@ -212,13 +214,41 @@ function App() {
               <option value="Uranus">Uranus</option>
               <option value="Neptune">Neptune</option>
           </select>
-          </div>
+          </div> */}
       </div>
 
-      <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
+      <div className='container'>
+        <div className="planet-carousel">
+          <Carousel infiniteLoop={true} centerMode={true} showThumbs={false} showIndicators={false} showStatus={false} showArrows={true}>
+            <div className="planet-item">
+              <img src={Sungif} alt="Sun"/>
+            </div>
+            <div className="planet-item">
+              <img src={Mercurygif} alt="Mercury" />
+            </div>
+            <div className="planet-item">
+              <img src={Venusgif} alt="Venus" />
+            </div>
+            <div className="planet-item">
+              <img src={Earthgif} alt="Earth" />
+            </div>
+            <div className="planet-item">
+              <img src={Marsgif} alt="Mars" />
+            </div>
+            <div className="planet-item">
+              <img src={Jupitergif} alt="Jupiter" />
+            </div>
+            <div className="planet-item">
+              <img src={Saturngif} alt="Saturn" />
+            </div>
+          </Carousel>
+        </div>
+      </div>
+
+      {/* <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
         ref={planetImageRef} // Use the imported GIF
         alt="Example GIF"
-      />
+      /> */}
 
       <div className="responsebox">{planetResponse}</div>
 

@@ -48,6 +48,33 @@ animation: zoom 16s alternate infinite;
   font-size: 1.5rem;
 }
 
+/* In your CSS stylesheet */
+.planet-carousel {
+  display: flex;
+  justify-content: space-between; /* Adjust to 'space-between' */
+  align-items: center;
+  height: 300px;
+  padding: 2rem;
+}
+
+.planet-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: scale(0.3);
+}
+
+.container {
+  width: 100%; /* Adjust the width as needed */
+  max-height: 100%;
+  max-width: 1200px; /* Set a maximum width to limit content width */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding to create spacing around the content */
+}
+
+
 .topnav {
   overflow: hidden;
   background-color: #2a2731;
