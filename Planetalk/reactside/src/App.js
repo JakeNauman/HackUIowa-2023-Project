@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import Sungif from './artwork/Sun.gif';
 import Earthgif from './artwork/Earth.gif';
+import Earth from './artwork/Earth2.png';
 import axios from 'axios';
 
 function generateStarBoxShadows() {
@@ -121,7 +122,7 @@ function App() {
         planetImageRef.current.src = Sungif;
         break;
       case 'Earth':
-        planetImageRef.current.src = Earthgif;
+        planetImageRef.current.src = Earth;
         break;
       // Add cases for other planets
       default:
