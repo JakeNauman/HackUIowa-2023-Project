@@ -1,5 +1,8 @@
 import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import the carousel styles
+
 import Sungif from './artwork/Sun.gif';
 import Earthgif from './artwork/Earth.gif';
 import Mercurygif from './artwork/Mercury.gif';
@@ -69,6 +72,7 @@ function App() {
   const[planetResponse, setResponse] = useState("Loading...")
   const[completedText, setCompletedText] = useState(false);
   const[intervalId, setIntervalId] = useState(null);
+  const[currentIndex, setCurrentIndex] = useState(0);
   
   // add introduction text once DOM loads
   useEffect(() => {
@@ -219,79 +223,112 @@ function App() {
     }
   }, []); // Empty dependency array means this runs once on mount
 
-  const handleDropdownChange = (event) => {
-    const selectedOption = event.target.value;
+  function update(index) {
+    console.log(index);
+    // const selectedOption = index;
+    planetID = index;
     // Perform actions based on the selected option
-    switch (selectedOption) {
-      case 'Sun':
-        planetImageRef.current.src = Sungif;
-        planetID = 0;
-        break;
-      case 'Mercury':
-        planetImageRef.current.src = Mercurygif;
-        planetID = 1;
-        break;
-      case 'Venus':
-        planetImageRef.current.src = Venusgif;
-        planetID = 2;
-        break;
-      case 'Earth':
-        planetImageRef.current.src = Earthgif;
-        planetID = 3;
-        break;
-      case 'Mars':
-        planetImageRef.current.src = Marsgif;
-        planetID = 4;
-        break;
-      case 'Jupiter':
-        planetImageRef.current.src = Jupitergif;
-        planetID = 5;
-        break;
-      case 'Saturn':
-        planetImageRef.current.src = Saturngif;
-        planetID = 6;
-        break;
-      case 'Uranus':
-        planetImageRef.current.src = Uranusgif;
-        planetID = 7;
-        break;
-      case 'Neptune':
-        planetImageRef.current.src = Neptunegif;
-        planetID = 8;
-        break;
-        default:
-          planetImageRef.current.src = Sungif;
-          break;
-      }
+    // switch (selectedOption) {
+    //   case 0:
+    //     planetImageRef.current.src = Sungif;
+    //     planetID = 0;
+    //     break;
+    //   case 1:
+    //     planetImageRef.current.src = Mercurygif;
+    //     planetID = 1;
+    //     break;
+    //   case 2:
+    //     planetImageRef.current.src = Venusgif;
+    //     planetID = 2;
+    //     break;
+    //   case 3:
+    //     planetImageRef.current.src = Earthgif;
+    //     planetID = 3;
+    //     break;
+    //   case 4:
+    //     planetImageRef.current.src = Marsgif;
+    //     planetID = 4;
+    //     break;
+    //   case 5:
+    //     planetImageRef.current.src = Jupitergif;
+    //     planetID = 5;
+    //     break;
+    //   case 6:
+    //     planetImageRef.current.src = Saturngif;
+    //     planetID = 6;
+    //     break;
+    //   case 7:
+    //     planetImageRef.current.src = Uranusgif;
+    //     planetID = 7;
+    //     break;
+    //   case 8:
+    //     planetImageRef.current.src = Neptunegif;
+    //     planetID = 8;
+    //     break;
+    //   default:
+    //     planetImageRef.current.src = Sungif;
+    //     break;
+    //   }
       clearInterval(intervalId);
       setResponse(getIntro());
   };
-    
+
   return (
 
     <div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="topnav">
         <h1 className='title'>PlaneTalk</h1>
-        <div className='menu'>
-        <label for="planets">Choose a planet: </label>
-          <select id="planets" onChange={handleDropdownChange} name="planets">
-              <option value="Sun">Sun</option>
-              <option value="Mercury">Mercury</option>
-              <option value="Venus">Venus</option>
-              <option value="Earth">Earth</option>
-              <option value="Mars">Mars</option>
-              <option value="Jupiter">Jupiter</option>
-              <option value="Saturn">Saturn</option>
-              <option value="Uranus">Uranus</option>
-              <option value="Neptune">Neptune</option>
-          </select>
-          </div>
       </div>
 
-      <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
+      <div className='container'>
+        <div className="planet-carousel">
+          <Carousel
+            infiniteLoop={true}
+            centerMode={true}
+            showThumbs={false}
+            showIndicators={false}
+            showStatus={false}
+            showArrows={true}
+            onChange={(newIndex) => {
+              setCurrentIndex(newIndex);
+              update(newIndex);
+            }}
+          >
+            <div className="planet-item">
+              <img src={Sungif} alt="Sun"/>
+            </div>
+            <div className="planet-item">
+              <img src={Mercurygif} alt="Mercury" />
+            </div>
+            <div className="planet-item">
+              <img src={Venusgif} alt="Venus" />
+            </div>
+            <div className="planet-item">
+              <img src={Earthgif} alt="Earth" />
+            </div>
+            <div className="planet-item">
+              <img src={Marsgif} alt="Mars" />
+            </div>
+            <div className="planet-item">
+              <img src={Jupitergif} alt="Jupiter" />
+            </div>
+            <div className="planet-item">
+              <img src={Saturngif} alt="Saturn" />
+            </div>
+            <div className="planet-item">
+              <img src={Uranusgif} alt="Uranus" />
+            </div>
+            <div className="planet-item">
+              <img src={Neptunegif} alt="Neptune" />
+            </div>
+          </Carousel>
+        </div>
+      </div>
+
+      {/* <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
         ref={planetImageRef} // Use the imported GIF
         alt="Example GIF"
-      />
+      /> */}
 
       <div /* all text */ style={{ height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "relative" }}>
         <div className="responsebox">{planetResponse}</div>
