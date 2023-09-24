@@ -120,9 +120,11 @@ function App() {
     switch (selectedOption) {
       case 'Sun':
         planetImageRef.current.src = Sungif;
+        planetID = 0;
         break;
       case 'Earth':
-        planetImageRef.current.src = Earth;
+        planetImageRef.current.src = Earthgif;
+        planetID = 1;
         break;
       // Add cases for other planets
       default:
