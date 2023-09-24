@@ -77,7 +77,7 @@ def GPTReponse(planetIndex, educationIndex, message):
       model="gpt-3.5-turbo",
       messages=[
           {"role": "system", "content": getPlanetPersona(planetIndex, educationIndex)},
-          # {"role": "assistant", "content": f"Please introduce yourself. Then ask the user what they would like to know about {planetOrder[planetIndex]}."},
+          {"role": "system", "content": "You are here to answer any and all questions about " + str(planetOrder[planetIndex]) + ". in less than 80 words."},
           {"role": "user", "content": message},
       ],
       max_tokens=256,
