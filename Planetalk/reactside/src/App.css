@@ -40,18 +40,17 @@ body{
 
 .responsebox {
   width: 60%; /* Adjust the width as needed */
-  height: auto; /* Adjust the height as needed */
+  min-height: 100px; /* Set a minimum height */
   padding: 10px;
-  outline: none; 
+  outline: none;
   color: white;
   text-align: center;
   vertical-align: auto;
   font-family: "Pixeloid";
   font-weight: bold;
   font-size: 1.5rem;
-  overflow-y: auto;
-  vertical-align: top;
-  margin-top: 0; 
+  overflow: hidden; /* Hide overflowing content */
+  margin-top: 0;
 }
 
 /* In your CSS stylesheet */
@@ -221,10 +220,10 @@ h1 {
 }
 
 .responseContainer {
-  height: 350px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   bottom: 0px;
   position: relative;
   flex-wrap: nowrap;
