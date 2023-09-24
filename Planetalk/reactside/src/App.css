@@ -191,12 +191,24 @@ button {
 }
 
 .carousel .control-prev {
-  transform: scale(2);
+  transform: scale(3);
+  outline: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 /* Style the next (right) arrow */
 .carousel .control-next {
-  transform: scale(2);
+  transform: scale(3);
+  outline: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  text-decoration: none !important;
 }
 h1 {
   display: block;
