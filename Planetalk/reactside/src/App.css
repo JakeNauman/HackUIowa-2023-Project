@@ -25,7 +25,7 @@ body{
 .inputbox{
   width: 400px; /* Adjust the width as needed */
   height: auto; /* Adjust the height as needed */
-  background-color: rgba(255, 255, 255, 0.3); /* Half transparent white background */
+  background-color: rgba(255, 255, 255, .25); /* Half transparent white background */
   border-radius: 20px;
   padding: 10px;
   font-size: 16px;
@@ -35,7 +35,7 @@ body{
   align-items: center; /* Center vertically within the box */
   text-align: center; /* Center the text horizontally within the box */
   padding-top: 60px;
-  mix-blend-mode: hard-light;
+  mix-blend-mode: normal;
 }
 
 .responsebox {
@@ -88,7 +88,7 @@ body{
   vertical-align: auto;
   align-items: center;
   background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.01) 50%, rgba(0,0,0,0.25982628105590067) 0%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.01) 50%, rgba(0,0,0,0.25982628105590067) 100%);
   mix-blend-mode: normal;
 }
 
@@ -234,4 +234,24 @@ h1 {
 textarea {
   font-family: "Pixeloid";
   font-weight: normal;
+}
+
+.mini-solarsystem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  padding: 2rem;
+}
+
+.mini-solarsystem img {
+  width: 40px;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  opacity: 0.5;
+}
+
+.mini-solarsystem .active {
+  opacity: 1;
 }

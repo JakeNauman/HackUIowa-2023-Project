@@ -232,6 +232,19 @@ function App() {
     console.log(index);
     // const selectedOption = index;
     planetID = index;
+    // update class of selected planet of mini solar system
+    console.log(planetNames[index] + "Mini")
+    const element = document.getElementById(planetNames[index] + "Mini");
+    // Check if the element exists
+    if (element) {
+      console.log("element exists");
+      // Add the "active" class to the element
+      const activeElements = document.querySelectorAll(".active");
+      activeElements.forEach(activeElement => {
+        activeElement.classList.remove("active");
+      });
+      element.className += " active";
+    }
     clearInterval(intervalId);
     getIntro();
     setdata(null);
@@ -254,7 +267,17 @@ function App() {
       <div className="topnav">
         <h1 className='title'>PlaneTalk</h1>
       </div>
-      <p className='white-text'>{planetNames[planetID]}: {planetID}/8</p> 
+      <div className='mini-solarsystem'>
+        <img id="SunMini" src={Sunpng} alt="Sun" className="sun" />
+        <img id="MercuryMini"src={Mercurypng} alt="Mercury" className="mercury" />
+        <img id="VenusMini"src={Venuspng} alt="Venus" className="venus" />
+        <img id="EarthMini"src={Earthpng} alt="Earth" className="earth" />
+        <img id="MarsMini"src={Marspng} alt="Mars" className="mars" />
+        <img id="JupiterMini"src={Jupiterpng} alt="Jupiter" className="jupiter" />
+        <img id="SaturnMini"src={Saturnpng} alt="Saturn" className="saturn" />
+        <img id="UranusMini"src={Uranuspng} alt="Uranus" className="uranus" />
+        <img id="NeptuneMini"src={Neptunepng} alt="Neptune" className="neptune" />
+      </div>
 
       <div id="overlay" class="overlay">
         <div class="popup">
