@@ -2,7 +2,26 @@ import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import Sungif from './artwork/Sun.gif';
 import Earthgif from './artwork/Earth.gif';
-import Earth from './artwork/Earth2.png';
+import Mercurygif from './artwork/Mercury.gif';
+import Saturngif from './artwork/Saturn.gif';
+import Neptunegif from './artwork/Neptune.gif';
+import Venusgif from './artwork/Venus.gif';
+import Marsgif from './artwork/Mars.gif';
+import Uranusgif from './artwork/Uranus.gif';
+import Jupitergif from './artwork/Jupiter.gif';
+
+
+import Sunpng from './artwork/Sun1.png';
+import Earthpng from './artwork/Earth2.png';
+import Mercurypng from './artwork/Mercury1.png';
+import Saturnpng from './artwork/Saturn1.png';
+import Neptunepng from './artwork/Neptune2.png';
+import Venuspng from './artwork/Venus1.png';
+import Marspng from './artwork/Mars1.png';
+import Uranuspng from './artwork/Uranus1.png';
+import Jupiterpng from './artwork/Jupiter1.png';
+
+
 import axios from 'axios';
 
 function generateStarBoxShadows() {
@@ -122,11 +141,38 @@ function App() {
         planetImageRef.current.src = Sungif;
         planetID = 0;
         break;
-      case 'Earth':
-        planetImageRef.current.src = Earthgif;
+      case 'Mercury':
+        planetImageRef.current.src = Mercurygif;
         planetID = 1;
         break;
-      // Add cases for other planets
+      case 'Venus':
+        planetImageRef.current.src = Venusgif;
+        planetID = 3;
+        break;
+      case 'Earth':
+        planetImageRef.current.src = Earthgif;
+        planetID = 4;
+        break;
+      case 'Mars':
+        planetImageRef.current.src = Marsgif;
+        planetID = 5;
+        break;
+      case 'Jupiter':
+        planetImageRef.current.src = Jupitergif;
+        planetID = 6;
+        break;
+      case 'Saturn':
+        planetImageRef.current.src = Saturngif;
+        planetID = 7;
+        break;
+      case 'Uranus':
+        planetImageRef.current.src = Uranusgif;
+        planetID = 8;
+        break;
+      case 'Neptune':
+        planetImageRef.current.src = Neptunegif;
+        planetID = 9;
+        break;
       default:
         planetImageRef.current.src = Sungif;
         break;
