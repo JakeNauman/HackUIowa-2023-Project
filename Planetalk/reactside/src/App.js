@@ -257,6 +257,7 @@ function App() {
     update(planetID);
   };
 
+
   const textStyle = {
     color: planetColors[planetID],
   };
@@ -264,9 +265,11 @@ function App() {
   return (
 
     <div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    
       <div className="topnav">
         <h1 className='title'>PlaneTalk</h1>
       </div>
+
       <div className='mini-solarsystem'>
         <img id="SunMini" src={Sunpng} alt="Sun" className="sun" />
         <img id="MercuryMini"src={Mercurypng} alt="Mercury" className="mercury" />
@@ -278,7 +281,7 @@ function App() {
         <img id="UranusMini"src={Uranuspng} alt="Uranus" className="uranus" />
         <img id="NeptuneMini"src={Neptunepng} alt="Neptune" className="neptune" />
       </div>
-
+    
       <div id="overlay" class="overlay">
         <div class="popup">
         <h2>Education Level</h2>
@@ -292,7 +295,7 @@ function App() {
           </ul>
         </div>
       </div>
-
+      
       <div className='container'>
         <div className="planet-carousel">
           <Carousel
