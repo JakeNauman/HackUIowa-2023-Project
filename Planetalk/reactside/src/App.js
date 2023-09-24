@@ -33,6 +33,8 @@ var JupiterImageRef = Jupiterpng;
 var SaturnImageRef = Saturnpng;
 var UranusImageRef = Uranuspng;
 var NeptuneImageRef = Neptunepng;
+var planetNames = ["Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+var planetColors = ["#ffcc00", "#828d94", "#ff6600", "#6abe30", "#e35100", "#986d43", "#d7a257", "#b4e4e4", "#1c8cf4"]
 
 function generateStarBoxShadows() {
   function randomNumber(min, max) {
@@ -77,7 +79,6 @@ function App() {
   //USER INPUT FOR TEXT BOX
   const[data,setdata] = useState(null)
   const[planetResponse, setResponse] = useState("Loading...")
-  const[completedText, setCompletedText] = useState(false);
   const[intervalId, setIntervalId] = useState(null);
   
   // add introduction text once DOM loads
@@ -166,7 +167,6 @@ function App() {
       clearInterval(intervalId);
     }
 
-    setCompletedText(false);
     let i = 0;
     const stringResponse = reply;
     const newIntervalId = setInterval(() => {
@@ -175,9 +175,8 @@ function App() {
       if (i > stringResponse.length) {
         clearInterval(intervalId);
         changeAnimation(false);
-        setCompletedText(true);
       }
-    }, 50);
+    }, 30);
     setIntervalId(newIntervalId); // Store the new interval ID
   }
 
@@ -235,6 +234,18 @@ function App() {
     planetID = index;
     clearInterval(intervalId);
     getIntro();
+    setdata(null);
+  };
+
+  const handleOptionClick = (option) => {
+    educationLevel = option;
+    document.getElementById("overlay").style.display = "none";
+    console.log(educationLevel)
+    update(planetID);
+  };
+
+  const textStyle = {
+    color: planetColors[planetID],
   };
 
   return (
@@ -242,6 +253,21 @@ function App() {
     <div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="topnav">
         <h1 className='title'>PlaneTalk</h1>
+      </div>
+      <p className='white-text'>{planetNames[planetID]}: {planetID}/8</p> 
+
+      <div id="overlay" class="overlay">
+        <div class="popup">
+        <h2>Education Level</h2>
+          <ul className="menu-list">
+            <li><button className='menuButton' id="option1" onClick={() => handleOptionClick(1)}>Elementary</button></li>
+            <li><button className='menuButton' id="option2" onClick={() => handleOptionClick(2)}>Middle School</button></li>
+            <li><button className='menuButton' id="option3" onClick={() => handleOptionClick(3)}>High School</button></li>
+            <li><button className='menuButton' id="option4" onClick={() => handleOptionClick(4)}>College</button></li>
+            <li><button className='menuButton' id="option5" onClick={() => handleOptionClick(5)}>Gradute</button></li>
+            <li><button className='menuButton' id="option6" onClick={() => handleOptionClick(6)}>Researcher</button></li>
+          </ul>
+        </div>
       </div>
 
       <div className='container'>
@@ -288,14 +314,9 @@ function App() {
         </div>
       </div>
 
-      {/* <img id="planetImage" style = {{align: "top", width: "300px", height: "300px"}} //image of planet
-        ref={planetImageRef} // Use the imported GIF
-        alt="Example GIF"
-      /> */}
-
-      <div /* all text */ style={{ height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", bottom: "0", position: "relative" }}>
-        <div className="responsebox">{planetResponse}</div>
-        <h1 className="white-text">{data}</h1>
+      <div className='responseContainer'>
+        <div className="responsebox" style={textStyle}>{planetResponse}</div>
+        <h1 className="white-text" style={{ fontWeight: "normal"}}>{data}</h1>
         <textarea className="inputbox white-text" autoFocus onKeyDown={handleKeyDown} style={{ width: "800px", height: "100px", fontSize: "32px", textAlign: "center", lineHeight: "40px" }} rows="3"></textarea>
       </div>
 
