@@ -11,15 +11,15 @@ import Uranusgif from './artwork/Uranus.gif';
 import Jupitergif from './artwork/Jupiter.gif';
 
 
-import Sunpng from './artwork/Sun1.png';
-import Earthpng from './artwork/Earth2.png';
-import Mercurypng from './artwork/Mercury1.png';
-import Saturnpng from './artwork/Saturn1.png';
-import Neptunepng from './artwork/Neptune2.png';
-import Venuspng from './artwork/Venus1.png';
-import Marspng from './artwork/Mars1.png';
-import Uranuspng from './artwork/Uranus1.png';
-import Jupiterpng from './artwork/Jupiter1.png';
+import Sunpng from './artwork/Sun.png';
+import Earthpng from './artwork/Earth.png';
+import Mercurypng from './artwork/Mercury.png';
+import Saturnpng from './artwork/Saturn.png';
+import Neptunepng from './artwork/Neptune.png';
+import Venuspng from './artwork/Venus.png';
+import Marspng from './artwork/Mars.png';
+import Uranuspng from './artwork/Uranus.png';
+import Jupiterpng from './artwork/Jupiter.png';
 
 
 import axios from 'axios';
@@ -31,8 +31,6 @@ function generateStarBoxShadows() {
 
   const STAR_COUNT = 400;
   let result = '';
-
-  const topBoxHeight = -10; // Adjust the height of the empty box at the top in vh units
   const intervalWidth = 25; // Adjust the width of the interval without stars in vw units
   const intervalCenter = 0; // Adjust the center of the interval
 
@@ -53,7 +51,6 @@ function generateStarBoxShadows() {
 
 var planetID = 0;
 var educationLevel = 2;
-var isTalking = false;
 function App() {
 
   //SPACE BACKGROUND
@@ -77,7 +74,81 @@ function App() {
     setResponse(getIntro());
   }, []);
 
+  function changeAnimation(talking){
+    if(talking===true){
+      console.log("talking");
+      switch (planetID) {
+        case 0:
+          planetImageRef.current.src = Sungif;
+          break;
+        case 1:
+          planetImageRef.current.src = Mercurygif;
+          break;
+        case 2:
+          planetImageRef.current.src = Venusgif;
+          break;
+        case 3:
+          planetImageRef.current.src = Earthgif;
+          break;
+        case 4:
+          planetImageRef.current.src = Marsgif;
+          break;
+        case 5:
+          planetImageRef.current.src = Jupitergif;
+          break;
+        case 6:
+          planetImageRef.current.src = Saturngif;
+          break;
+        case 7:
+          planetImageRef.current.src = Uranusgif;
+          break;
+        case 8:
+          planetImageRef.current.src = Neptunegif;
+          break;
+        default:
+          planetImageRef.current.src = Sungif;
+          break;
+      }
+    } 
+    if(talking===false){
+      console.log("not talking");
+      switch (planetID) {
+        case 0:
+          planetImageRef.current.src = Sunpng;
+          break;
+        case 1:
+          planetImageRef.current.src = Mercurypng;
+          break;
+        case 2:
+          planetImageRef.current.src = Venuspng;
+          break;
+        case 3:
+          planetImageRef.current.src = Earthpng;
+          break;
+        case 4:
+          planetImageRef.current.src = Marspng;
+          break;
+        case 5:
+          planetImageRef.current.src = Jupiterpng;
+          break;
+        case 6:
+          planetImageRef.current.src = Saturnpng;
+          break;
+        case 7:
+          planetImageRef.current.src = Uranuspng;
+          break;
+        case 8:
+          planetImageRef.current.src = Neptunepng;
+          break;
+        default:
+          planetImageRef.current.src = Sunpng;
+          break;
+      }
+    } 
+  }
+
   function AnimateText(reply) {
+    changeAnimation(true);
     console.log(reply);
     setCompletedText(false);
     let i = 0;
@@ -87,6 +158,7 @@ function App() {
       i++;
       if (i > stringResponse.length) {
         clearInterval(interval);
+        changeAnimation(false);
         setCompletedText(true);
       }
     }, 50);
